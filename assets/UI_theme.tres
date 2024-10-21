@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bei62k6eno3ge"]
+
+[ext_resource type="StyleBox" uid="uid://de7j1lnwvyi0g" path="res://assets/new_style_box_hover.tres" id="1_ja5s7"]
+[ext_resource type="StyleBox" uid="uid://bmsmnjn3tjxuq" path="res://assets/new_style_box_flat.tres" id="2_an84h"]
+
+[resource]
+default_font_size = 70
+Button/styles/hover = ExtResource("1_ja5s7")
+Button/styles/normal = ExtResource("2_an84h")
+Label/styles/normal = null

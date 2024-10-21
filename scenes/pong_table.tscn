@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfs5jkgmyl1fl"]
+
+[ext_resource type="Script" path="res://scripts/pong_table.gd" id="1_nkcoa"]
+[ext_resource type="Texture2D" uid="uid://cxrandpgxjph0" path="res://assets/Brown.png" id="1_v6ugi"]
+[ext_resource type="PackedScene" uid="uid://82rp27ho560i" path="res://scenes/wall.tscn" id="2_47aom"]
+[ext_resource type="PackedScene" uid="uid://b13rdxls3m516" path="res://scenes/death_zone.tscn" id="3_yjeww"]
+[ext_resource type="PackedScene" uid="uid://f2kl027e0una" path="res://scenes/player.tscn" id="4_2lror"]
+[ext_resource type="FontFile" uid="uid://d226vucxysjm2" path="res://assets/Kenney Pixel Square.ttf" id="6_qee72"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgnbj"]
+font = ExtResource("6_qee72")
+font_size = 40
+
+[node name="PongTable" type="Node2D"]
+script = ExtResource("1_nkcoa")
+
+[node name="Net" type="Sprite2D" parent="."]
+position = Vector2(572, 326)
+scale = Vector2(0.375, 10.0781)
+texture = ExtResource("1_v6ugi")
+
+[node name="Wall" parent="." instance=ExtResource("2_47aom")]
+position = Vector2(0, -2)
+
+[node name="Wall2" parent="." instance=ExtResource("2_47aom")]
+position = Vector2(4, 672)
+
+[node name="DeathZone" parent="." instance=ExtResource("3_yjeww")]
+
+[node name="DeathZone2" parent="." instance=ExtResource("3_yjeww")]
+position = Vector2(1230, -10)
+z1z2 = "z2"
+
+[node name="Player" parent="." instance=ExtResource("4_2lror")]
+position = Vector2(163, 300)
+
+[node name="Player2" parent="." instance=ExtResource("4_2lror")]
+position = Vector2(959, 302)
+p1p2 = "p2"
+
+[node name="ScoreBoard" type="CanvasLayer" parent="."]
+
+[node name="P1" type="Label" parent="ScoreBoard"]
+offset_left = 70.0
+offset_top = 1.0
+offset_right = 160.0
+offset_bottom = 61.0
+text = "P1: 0"
+label_settings = SubResource("LabelSettings_dgnbj")
+
+[node name="P2" type="Label" parent="ScoreBoard"]
+offset_left = 994.0
+offset_right = 1094.0
+offset_bottom = 60.0
+text = "P2: 0"
+label_settings = SubResource("LabelSettings_dgnbj")
+
+[node name="StartPos" type="Marker2D" parent="."]
+position = Vector2(444, 171)
+
+[connection signal="gain_score" from="DeathZone" to="." method="_on_death_zone_gain_score"]
+[connection signal="gain_score" from="DeathZone2" to="." method="_on_death_zone_2_gain_score"]
